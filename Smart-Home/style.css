@@ -1,0 +1,812 @@
+/* VARIABLES  Se declaran en :root para que estén disponibles en toda la página. */
+:root {
+  /* Azules para acentos, botones activos y enlaces */
+  --color-blue-300:    #93c5fd;
+  --color-blue-400:    #60a5fa; 
+  --color-blue-500:    #3b82f6;  
+  --color-blue-600:    #2563eb;  
+  /* Blancos y grises para fondos, textos y bordes */
+  --color-white:       #ffffff;
+  --color-gray-50:     #f9fafb; 
+  --color-gray-100:    #f1f5f9;  /* fondo modo claro */
+  --color-gray-200:    #e2e8f0;  /* bordes modo claro */
+  --color-gray-300:    #cbd5e1;
+  --color-gray-400:    #94a3b8;  
+  --color-gray-500:    #64748b;  
+  --color-gray-600:    #475569;
+  --color-gray-700:    #334155;  /*dispositivas modo oscuro */
+  --color-gray-800:    #1e293b;  /*tarjetas  modo oscuro */
+  --color-gray-850:    #172033;  /* fondo alternativo  modo oscuro */
+  --color-gray-900:    #0f172a;  /* fondo de barra/barraSup  modo oscuro */
+  --color-gray-950:    #090e1a;  
+
+  --color-green-400:   #34d399;
+  --color-green-500:   #10b981;
+  --color-yellow-400:  #fbbf24;  
+  --color-red-400:     #f87171;  
+  --color-red-500:     #ef4444;
+  font-size: 1rem; /* base para rem: 1rem = 16px por defecto del navegador */
+}
+/* VARIABLESTEMA CLARO ( por defecto)
+   Se definen dentro de body para que hereden todos los elementos. Cada variable tiene un nombre que describe su USO (no su color).
+   Esto permite que al cambiar a modo oscuro solo se reasignen estas variables y todo el diseño cambie automáticamente.*/
+
+body {
+
+  /*Fondos de cada zona*/
+  --bg-app:          var(--color-gray-100); /*fondo de la página*/
+  --bg-sidebar:      var(--color-white); /*menú lateral*/
+  --bg-topbar:       var(--color-white); /*barra superior*/
+  --bg-card:         var(--color-white); /*widget*/
+  --bg-card-alt:     var(--color-gray-50); /*dentro de widgets*/
+  --bg-bottom-nav:   var(--color-white); /*menú inferior móvil*/
+  --bg-device:       var(--color-gray-100); /*tarjetas de dispositivo*/
+  --bg-nav-active:   var(--color-blue-500); /*fondo del ítem de nav activo*/
+
+  /*Colores de texto*/
+  --text-primary:    var(--color-gray-900); /*texto principal*/
+  --text-secondary:  var(--color-gray-500); /*descripciones*/
+  --text-muted:      var(--color-gray-400); /*tiempo*/
+  --text-on-accent:  var(--color-white); /*texto botones*/
+  --text-on-dark:    var(--color-gray-100); /*texto fondo oscuro*/
+
+  /*Colores de texto arriba*/
+  --accent-color:    var(--color-blue-600);    /*color principal de la marca*/
+  --accent-light:    var(--color-blue-400);    /*versión modo dia */
+  --accent-glow:     rgba(59, 130, 246, 0.14); /*azul traslúcido */
+
+  /*Colores de estado*/
+  --status-on:       var(--color-green-500);   /*encendido*/
+  --status-off:      var(--color-gray-400);    /*apagado*/
+  --status-warn:     var(--color-yellow-400);  /*advertencia*/
+  --status-rec:      var(--color-red-400);     /*cámara grabando*/
+
+  /*Bordes y sombras*/
+  --border-color:    var(--color-gray-200);
+  --shadow-sm:       0 0.1rem 0.5rem rgba(0,0,0,0.06);    /* sombra sutil */
+  --shadow-card:     0 0.25rem 1.5rem rgba(0,0,0,0.07);   /* sombra tarjeta */
+  --shadow-hover:    0 0.6rem 2rem rgba(0,0,0,0.13);      /* sombra al pasar el ratón */
+
+  /*borde*/
+  --radius-card:     1rem;    /* esquinas widgets */
+  --radius-sm:       0.5rem;  /* esquinas elementos pequeños */
+  --radius-pill:     2rem;    /*botones, etiquetas*/
+
+  /*Velocidad de transición del tema*/
+  --t: 0.32s ease; 
+}
+
+/*VARIABLES TEMA OSCURO
+  El selector "#dark:target ~ .app" significa:"cuando #dark esté activo (:target), aplica estilos al hermano siguiente (.app)
+  y a todos sus descendientes"Dentro de .app se reasignan las variables semánticas con colores oscuros. 
+  Los componentes siguen usando var(--bg-card),var(--text-primary), etc., pero ahora esas variables apuntan a colores oscuros*/
+#dark:target ~ .app,
+#dark:target ~ .app * {
+
+  /* Fondos oscuros */
+  --bg-app:          var(--color-gray-950);   
+  --bg-sidebar:      var(--color-gray-900);
+  --bg-topbar:       var(--color-gray-900);
+  --bg-card:         var(--color-gray-800);
+  --bg-card-alt:     var(--color-gray-850);
+  --bg-bottom-nav:   var(--color-gray-900);
+  --bg-device:       var(--color-gray-700);
+  --bg-nav-active:   var(--color-blue-500);  
+
+  /*Texto  sobre fondo oscuro*/
+  --text-primary:    var(--color-gray-50);
+  --text-secondary:  var(--color-gray-400);
+  --text-muted:      var(--color-gray-500);
+
+  /*Texto claro para mejor contraste en oscuro*/
+  --accent-color:    var(--color-blue-400);
+  --accent-glow:     rgba(96, 165, 250, 0.15);
+
+  /*Bordes muy tenues sobre fondo oscuro*/
+  --border-color:    rgba(255,255,255,0.07);
+
+  /* Sombras más intensas porque el fondo es oscuro */
+  --shadow-sm:       0 0.1rem 0.5rem rgba(0,0,0,0.35);
+  --shadow-card:     0 0.25rem 1.5rem rgba(0,0,0,0.45);
+  --shadow-hover:    0 0.6rem 2rem rgba(0,0,0,0.65);
+}
+
+/* El fondo del contenedor también cambia*/
+#dark:target ~ .app { 
+  background: var(--color-gray-950); 
+}
+
+/*TEMA CLARO se restaura al pulsar "Modo Día" igual que el modo oscuro*/
+#light:target ~ .app,
+#light:target ~ .app * {
+  --bg-app:          var(--color-gray-100);
+  --bg-sidebar:      var(--color-white);
+  --bg-topbar:       var(--color-white);
+  --bg-card:         var(--color-white);
+  --bg-card-alt:     var(--color-gray-50);
+  --bg-bottom-nav:   var(--color-white);
+  --bg-device:       var(--color-gray-100);
+
+  --text-primary:    var(--color-gray-900);
+  --text-secondary:  var(--color-gray-500);
+  --text-muted:      var(--color-gray-400);
+
+  --accent-color:    var(--color-blue-600);
+  --accent-glow:     rgba(59, 130, 246, 0.14);
+
+  --border-color:    var(--color-gray-200);
+  --shadow-sm:       0 0.1rem 0.5rem rgba(0,0,0,0.06);
+  --shadow-card:     0 0.25rem 1.5rem rgba(0,0,0,0.07);
+  --shadow-hover:    0 0.6rem 2rem rgba(0,0,0,0.13);
+}
+
+#light:target ~ .app { 
+  background: var(--color-gray-100); 
+}
+
+
+/*RESETEO BÁSICO Elimina márgenes, rellenos y el modelo de caja inconsistente que traen los navegadores por defecto.*/
+*, *::before, *::after {
+  box-sizing: border-box; /* el padding no aumenta el tamaño del elemento */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.55;
+  background: var(--bg-app);     
+  color: var(--text-primary);    
+  min-height: 100vh; 
+}
+p  { 
+  margin: 0; 
+}
+h1 { 
+  margin: 0; 
+}
+/* enlaces sin subrayado */
+a  { 
+  text-decoration: none; 
+  color: inherit; 
+} 
+/* las imágenes no dejan espacio extra abajo */
+img {
+   display: block; 
+  } 
+
+#light, #dark {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column; /* en móvil: apilado verticalmente */
+  min-height: 100vh;
+  background: var(--bg-app);
+}
+
+/*BARRA OCULTO EN MÓVIL Se muestra solo en desktop */
+.barra {
+  display: none; /* invisible en móvil */
+}
+
+.principal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* BARRA SUPERIOR — BASE MÓVIL*/
+.barraSuperior {
+  background: var(--bg-topbar);
+  border-bottom: 0.0625rem solid var(--border-color); 
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.barrasupNom{
+  font-family: 'Syne', sans-serif;
+  font-weight: 80;
+  font-size: 1.1rem; 
+  color: var(--text-primary);
+}
+
+.barrasup-subtitulo {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em; 
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-top: 0.1rem;
+}
+
+.barrasup-accion {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.control {
+  display: flex;
+  gap: 0.35rem;
+}
+
+/* Botones de cambio de tema (Día / Noche) */
+.modo-btn {
+  padding: 0.4em 0.85em; 
+  border: 0.0625rem solid var(--border-color);
+  border-radius: var(--radius-pill); 
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap; /* evita que el texto se parta en dos líneas */
+}
+
+.modo-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: var(--accent-glow);
+}
+
+/* Botón de notificaciones (círculo con campana) */
+.notif-btn {
+  background: var(--bg-card-alt);
+  border: 0.0625rem solid var(--border-color);
+  border-radius: 50%; 
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+.SaludoArriba {
+  padding: 1.5rem 1rem 0.5rem;
+}
+.SaludoAbajo {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color);
+  margin-bottom: 0.3rem;
+}
+
+/* Título grande con nombre del usuario */
+.saludo-titulo {
+  font-family: 'Syne', sans-serif;
+  /* clamp(mínimo, preferido, máximo) — tamaño fluido según el ancho */
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em; /* letras ligeramente juntas: sensación premium */
+  color: var(--accent-color);
+  line-height: 1.15;
+}
+
+/* El nombre en <em> se colorea con el acento */
+.saludo-titulo em {
+  font-style: normal;
+  color: var(--accent-color);
+}
+
+.Saludo-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.35rem;
+}
+
+/* CUADRÍCULA DEL DASHBOARD — BASE MÓVIL
+    auto-fill: crea todas las columnas que quepan en el ancho. minmax(18rem, 1fr): cada columna mide mínimo 18rem.
+    Si sobra espacio, se reparte en fracciones iguales (1fr).No se define el número de columnas: se adaptan solas. */
+
+.panel {
+  width: 100%;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+  padding-bottom: 5rem; 
+}
+
+
+/*WIDGET BASE — BASE MÓVIL*/
+.widget {
+  background: var(--bg-card);           
+  border-radius: var(--radius-card);    
+  border: 0.0625rem solid var(--border-color);
+  padding: 1.2em;   
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  box-shadow: var(--shadow-card);
+  
+}
+
+.widget:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-0.18em);
+}
+
+/* Etiqueta del widget: título pequeño en mayúsculas */
+.widget-etiqueta {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Fila de cabecera con título y etiqueta a ambos lados */
+.widget-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Etiqueta pequeña tipo "Hoy" */
+.widget-tag {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: var(--bg-card-alt);
+  border: 0.0625rem solid var(--border-color);
+  padding: 0.15em 0.6em;
+  border-radius: var(--radius-pill);
+}
+
+.widget-hora {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.widget-foto {
+  width: 100%;
+  height: 8rem;
+  object-fit: cover;      /* la imagen rellena el espacio sin deformarse */
+  border-radius: var(--radius-sm);
+  border: 0.125rem dashed var(--border-color); 
+}
+
+.widget:hover .widget-foto { 
+  border-color: var(--accent-color);
+}
+
+/* WIDGET CLIMA*/
+.clima-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.clima-temp {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.8em; 
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+/* La "C" de grados Celsius más pequeña */
+.clima-temp span {
+  font-size: 0.45em;
+  color: var(--text-secondary);
+}
+
+.clima-desc {
+  font-size: 0.82em;
+  color: var(--text-secondary);
+  margin-top: 0.2em;
+}
+
+.clima-loc {
+  font-size: 0.75em;
+  color: var(--accent-color);
+  margin-top: 0.1em;
+}
+
+.clima-badges {
+  display: flex;
+  gap: 0.6em;
+  margin-top: 0.8em;
+  flex-wrap: wrap; /* si no caben, bajan a la siguiente línea */
+}
+
+/* Cada insignia (humedad, aire) */
+.badge {
+  background: var(--bg-card-alt);
+  border: 0.0625rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.4em 0.7em;
+  min-width: 4em;
+}
+
+.badge-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.badge-label {
+  font-size: 0.65em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* "Excelente" en verde */
+.badge-tag {
+  font-size: 0.7em;
+  color: var(--status-on);
+  font-weight: 600;
+}
+
+.clima-foto {
+  width: 35%;     /* porcentaje del ancho del contenedor padre */
+  min-width: 6rem;
+  max-width: 10rem;
+  aspect-ratio: 1; /* siempre cuadrada */
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-alt);
+  border: 0.125rem dashed var(--border-color);
+  flex-shrink: 0; /* no se encoge aunque haya poco espacio */
+}
+/*WIDGET ENERGÍA */
+
+/* Valor grande de kWh */
+.energia-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* "kWh" en pequeño y color secundario */
+.energia-val span {
+  font-size: 0.45em;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/*WIDGET DISPOSITIVOS */
+.device-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 0.6em;
+}
+
+.device-item {
+  background: var(--bg-device);
+  border: 0.0625rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35em;
+}
+
+/* Imagen/icono del dispositivo*/
+.device-img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border-radius: 0.4rem;
+  background: var(--bg-card-alt);
+  border: 0.0625rem dashed var(--border-color);
+}
+
+.device-name {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.device-status {
+  font-size: 0.7em;
+  font-weight: 700;
+  padding: 0.1em 0.5em;
+  border-radius: var(--radius-pill);
+}
+
+.device-status.on {
+  background: rgba(16,185,129,0.15);
+  color: var(--status-on);
+}
+
+.device-status.off {
+  background: rgba(148,163,184,0.15);
+  color: var(--status-off);
+}
+
+.music-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  background: var(--bg-card-alt);
+  border: 0.0625rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.65em 0.8em;
+}
+
+.music-img {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.35rem;
+  object-fit: cover;
+  background: var(--bg-device);
+  border: 0.0625rem dashed var(--border-color);
+}
+
+.music-titulo {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.music-sub {
+  font-size: 0.7em;
+  color: var(--text-secondary);
+}
+
+/*WIDGET CÁMARAS*/
+.rec {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--status-rec);
+  letter-spacing: 0.04em;
+}
+
+.cam-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  gap: 0.5em;
+}
+
+.cam-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.cam-foto {
+  width: 100%;
+  aspect-ratio: 16/10; /* mantiene la proporción de pantalla ancha */
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-alt);
+  border: 0.125rem dashed var(--border-color);
+  display: block;
+}
+
+.cam-nombre {
+  font-size: 0.65em;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/*WIDGET ACTIVIDAD RECIENTE*/
+
+/* Lista vertical de eventos */
+.actividad-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+/* Cada fila de evento */
+.actividad-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7em;
+  padding: 0.6em 0.75em;
+  background: var(--bg-card-alt);
+  border: 0.0625rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.actividad-item.advertencia {
+  border-color: rgba(251,191,36,0.3);
+  background: rgba(251,191,36,0.05);
+}
+
+.actividad-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.4rem;
+  object-fit: cover;
+  background: var(--bg-device);
+  border: 0.0625rem dashed var(--border-color);
+}
+
+.actividad-titulo {
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.actividad-hora {
+  font-size: 0.72em;
+  color: var(--text-secondary);
+  margin-top: 0.1em;
+}
+
+/* Enlace "Ver todo el historial" no lleva a nada */
+.actividad-link {
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  font-weight: 500;
+  align-self: flex-start; /* no se estira al ancho completo */
+  transition: opacity 0.2s;
+}
+
+.actividad-link:hover { opacity: 0.7; }
+
+/*NAVEGACIÓN INFERIOR*/
+.boton-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-bottom-nav);
+  border-top: 0.0625rem solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0 0.7rem;
+  z-index: 20;
+}
+
+/* Cada ítem del menú inferior */
+.boton-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  padding: 0.2rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s;
+}
+
+/* Ítem activo en azul menú inferior */
+.boton-item.activo { color: var(--accent-color); }
+
+/* Icono del ítem menú inferior  */
+.boton-icon { font-size: 1.2rem; }
+
+/*DESKTOP: pantallas de 64rem (1024px) en adelante */
+@media (min-width: 64rem) {
+
+  /* En desktop el layout es horizontal: barra + contenido */
+  .app {
+    flex-direction: row; /* cambia de columna a fila */
+  }
+
+  /* La barra aparece a la izquierda con ancho fijo */
+  .barra {
+    display: flex;        
+    flex-direction: column;
+    width: 14rem;         
+    min-height: 100vh;
+    background: var(--bg-sidebar);
+    border-right: 0.0625rem solid var(--border-color);
+    padding: 1.5rem 0;
+    flex-shrink: 0;        /* la barra no se encoge */
+    position: sticky;      /* queda fijo al hacer scroll */
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  /* Cabecera de la barra: avatar + datos del usuario */
+  .barra-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 1.25rem 1.5rem;
+    border-bottom: 0.0625rem solid var(--border-color);
+    margin-bottom: 1rem;
+  }
+
+  /* Avatar circular del usuario */
+  .avatar {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%; /* círculo perfecto */
+    object-fit: cover;
+    background: var(--bg-card-alt);
+    border: 0.125rem dashed var(--border-color);
+    flex-shrink: 0;
+  }
+
+  .barra-usuario {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+  }
+
+  .barra-roll {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Menú de navegación de la barra */
+  .barra-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0 0.75rem;
+  }
+
+  /* Cada ítem del menú del sidebar */
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* Al pasar el ratón: fondo azul tenue */
+  .nav-item:hover {
+    background: var(--accent-glow);
+    color: var(--accent-color);
+  }
+
+  /* Ítem activo: fondo azul sólido + texto blanco */
+  .nav-item.activo {
+    background: var(--bg-nav-active);
+    color: var(--text-on-accent);
+  }
+
+  .nav-icon { 
+    font-size: 1rem; 
+  }
+
+  /* El menú inferior desaparece en desktop (la barra lo reemplaza) */
+  .boton-nav { 
+    display: none; 
+  }
+
+  /* El contenido principal ocupa el resto del espacio horizontal */
+  .main-wrap { 
+    flex: 1; min-width: 0; 
+  }
+
+  .barraSuperior  { 
+    padding: 1rem 2rem; 
+  }
+  .SaludoArriba {
+     padding: 2rem 2rem 0.5rem; 
+    }
+  .panel {
+    padding: 1.5rem 2rem 2rem;
+    gap: 1.25rem;
+  }
+}
+
