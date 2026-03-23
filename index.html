@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartHome panel</title>
+  <!--fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!--ANCLAS DE MODO OSCURO / MODO DÍA
+    Estas dos secciones vacías son "anclas" de CSS. Cuando el usuario pulsa "Modo Noche", la URL cambia a #dark.
+    Cuando pulsa "Modo Día", la URL cambia a #light.El CSS usa esos estados (:target) para cambiar los colores de TODA la página . -->
+
+  <section id="light"></section>
+  <section id="dark"></section>
+
+  <!--CONTENEDOR RAÍZ DE LA APLICACIÓN-->
+  <div class="app">
+    <div class="barra">
+      <div class="barra-cabecera">
+        <img class="avatar" src="resourcers/usuario.png" alt=" usuario">
+        <div class="barra-usuario">
+          <p class="barra-nombre">Alba</p>
+          <p class="barra-roll">Smart Home Alba</p>
+        </div>
+      </div>
+ 
+      <!-- Menú de navegación del sidebar -->
+      <nav class="barra-nav">
+        <a href="#" class="nav-item activo">
+          <p class="nav-icon">⌂</p> Inicio
+        </a>
+        <a href="#" class="nav-item">
+          <p class="nav-icon">⊞</p> Dispositivos
+        </a>
+        <a href="#" class="nav-item">
+          <p class="nav-icon">↗</p> Estadísticas
+        </a>
+        <a href="#" class="nav-item">
+          <p class="nav-icon">⚙</p> Ajustes
+        </a>
+        </nav>
+    </div>
+
+    <!-- ZONA PRINCIPAL -->
+    <div class="principal">
+      <!--BARRA SUPERIOR-->
+      <header class="barraSuperior">
+        <div class="barrasupIzq-left">
+          <p class="barrasupNom">Smart Home</p>
+        </div>
+
+        <div class="barrasup-accion ">
+          <!--Botones de modo día / noche.Cada botón está dentro de un enlace <a href="#...">
+          Al pulsar, el navegador navega al ancla (#light o #dark) y el CSS cambia el tema automáticamente.-->
+          <div class="Control">
+            <a href="#light"><button class="modo-btn">☀ Día</button></a>
+            <a href="#dark"><button class="modo-btn">☾ Noche</button></a>
+          </div>
+          <button class="notif-btn">🔔</button>
+        </div>
+      </header>
+
+      <!--SALUDO PERSONALIZADO -->
+      <section class="SaludoArriba">
+        <p class="SaludoAbajo">Buenas , Alba</p>
+        <h1 class="Saludo-titulo">Buenas Días, <em>Alba</em></h1>
+        <p class="Saludo-desc">Todo bajo control en tu Smart Home Alba.</p>
+      </section>
+
+      <!--PRINCIPAL DEL PANEL -->
+      <main class="panel">
+        <!--WIDGET 1: ESTADO DEL CLIMA -->
+        <div class="widget widget--clima">
+          <p class="widget-etiqueta">Estado del Clima</p>
+          <div class="clima-body">
+            <div class="clima-left">
+              <p class="clima-temp">22°<span>C</span></p>
+              <p class="clima-desc">Cielo despejado</p>
+              <p class="clima-loc">· Exterior</p>
+
+              <!-- humedad y aire -->
+              <div class="clima-badges">
+                <div class="badge">
+                  <p class="badge-val"> 💧 45%</p>
+                  <p class="badge-label">Humedad </p>
+                  <p class="badge-tag">Excelente</p>
+                </div>
+
+                <div class="badge">
+                  <p class="badge-val"> 5 km/h </p>
+                  <p class="badge-label">Aire</p>
+                  <p class="badge-tag">Excelente</p>
+                </div>
+              </div>
+            </div>
+            <img class="clima-foto" src="resourcers/clima.png" alt="Foto clima">
+          </div>
+        </div>
+
+        <!--WIDGET 2: CONSUMO DE ENERGÍA -->
+        <div class="widget widget--energia">
+          <div class="widget-header-row">
+            <p class="widget-etiqueta">Consumo de Energía</p>
+            <p class="widget-tag">Hoy</p>
+          </div>
+          <img class="widget-foto" src="resourcers/grafico.png" alt="Foto energía">
+          <!-- Valor principal del consumo -->
+          <p class="energia-val">12.4 <span>kWh</span></p>
+          <p class="widget-hora">+2.3% hoy</p>
+
+        </div>
+
+        <!--WIDGET 3: DISPOSITIVOS ACTIVOS -->
+        <div class="widget widget--dispositivos">
+
+          <p class="widget-etiqueta">Dispositivos Activos</p>
+
+          <!-- Lista de dispositivos en cuadrícula de 2 columnas -->
+          <div class="device-list">
+            <div class="device-item on">
+              <img class="device-img" src="resourcers/luz.png" alt="Luces">
+              <p class="device-name">Luces</p>
+              <!-- La clase "on" pone el texto en verde -->
+              <p class="device-status on">Encendido</p>
+            </div>
+            <div class="device-item off">
+              <img class="device-img" src="resourcers/aire.png" alt="Aire Ac.">
+              <p class="device-name">Aire Ac.</p>
+              <!-- La clase "off" pone el texto en gris -->
+              <p class="device-status off">Apagado</p>
+            </div>
+          </div>
+
+          <div class="music-barra">
+            <img class="music-img" src="resourcers/music.png" alt="Music">
+            <div>
+              <p class="music-titulo">Consentía</p>
+              <p class="music-sub">Dellafuente</p>
+            </div>
+          </div>
+        </div>
+
+        <!--WIDGET 4: CÁMARAS DE SEGURIDAD -->
+        <div class="widget widget--camaras">
+
+          <div class="widget-header-row">
+            <p class="widget-etiqueta">Cámaras de Seguridad</p>
+            <p class="rec">● REC · Vivo</p>
+          </div>
+          <div class="cam-grid">
+            <div class="cam-item">
+              <img class="cam-foto" src="resourcers/Entradaprincipal.png" alt="entrada">
+              <p class="cam-nombre">Entrada</p>
+            </div>
+
+            <div class="cam-item">
+              <img class="cam-foto" src="resourcers/Cocina.png" alt="cocina">
+              <p class="cam-nombre">Cocina</p>
+            </div>
+
+            <div class="cam-item">
+              <img class="cam-foto" src="resourcers/Patio.png" alt="jardín">
+              <p class="cam-nombre">Jardín</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!--WIDGET 5: ACTIVIDAD RECIENTE -->
+        <div class="widget widget--actividad">
+          <p class="widget-etiqueta">Actividad Reciente</p>
+          <div class="actividad-list">
+            <div class="actividad-item">
+              <img class="actividad-icon" src="resourcers/puerta.png" alt="Puerta">
+              <div class="actividad-text">
+                <p class="actividad-titulo">Puerta abierta</p>
+                <p class="actividad-hora">Hace 2 min · Entrada Principal</p>
+              </div>
+            </div>
+
+            <div class="actividad-item advertencia">
+              <!-- FOTO: cambia "FOTO" por icono de alarma -->
+              <img class="actividad-icon" src="resourcers/alerta.png" alt="Alarma">
+              <div class="actividad-text">
+                <p class="actividad-titulo">Alarma de temperatura</p>
+                <p class="actividad-hora">Hace 15 min · Cocina</p>
+              </div>
+            </div>
+
+            <div class="actividad-item">
+              <!-- FOTO: cambia "FOTO" por icono de actualización -->
+              <img class="actividad-icon" src="resourcers/actualizacion.png" alt="Actualización">
+              <div class="activity-text">
+                <p class="actividad-titulo">Escena "Noche" programada</p>
+                <p class="actividad-hora">Hace 1 hora · Todo el hogar</p>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="actividad-link">Ver todo el historial</a>
+        </div>
+      </main>
+    </div>
+
+    <!--NAVEGACIÓN INFERIOR -->
+    <nav class="boton-nav">
+      <!-- La clase "active" resalta el ítem actual en azul -->
+      <a href="#" class="boton-item activo">
+        <p class="boton-icon">⌂</p>
+        <p>Inicio</p>
+      </a>
+      <a href="#" class="boton-item">
+        <p class="boton-icon">⊞</p>
+        <p>Dispositivos</p>
+      </a>
+      <a href="#" class="boton-item">
+        <p class="boton-icon">↗</p>
+        <p>Estadísticas</p>
+      </a>
+      <a href="#" class="boton-item">
+        <p class="boton-icon">⚙</p>
+        <p>Ajustes</p>
+      </a>
+    </nav>
+  </div>
+</body>
+</html>
